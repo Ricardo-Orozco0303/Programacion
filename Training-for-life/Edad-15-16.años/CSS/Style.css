@@ -1,0 +1,416 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+.Caja {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+.Caja::before{
+    content: "";
+    background-image: url(https://images.unsplash.com/photo-1514994444123-10094655bdb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80);
+    top: 5px;
+    width: 1150px;
+    height: 550px;
+    opacity: 0.5;
+    border-radius: 20px;
+    margin: auto;
+    position: absolute;
+    position: center;
+}
+.Parrafo {
+    font-size: 100px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    top: 90px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+.Rotador{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    right: 500px;
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: spin 4s infinite linear;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+}
+.navbar-nav{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.nav-item{
+    color: white;
+    float: left;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav-link{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav-link:hover {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    border-radius: 10px;
+    opacity: 1;
+}
+.volver-link {
+  background-color: white;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 20px;
+}
+.volver-link:hover {
+  background-color: white;
+}
+.volver-link:hover span {
+  display: none;
+}
+.volver-link:hover::after {
+  font-family: 'Times New Roman', Times, serif;
+  content: "Espero que vuelvas";
+  display: block;
+  font-size: 20px;
+  color: #333;
+  border-radius: 25px;
+}
+.container {
+  display: flex;
+  width: 1150px;
+  margin: 375px auto 0;
+}
+.calendar {
+  padding: 50px;
+  margin: auto; 
+  
+}
+.header {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.days {
+  display: flex;
+  width: 790px;
+  margin-bottom: 10px;
+  color: white;
+  gap: 11.5px;
+  justify-content: space-between; 
+}
+
+.day-1 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+}
+.day-2 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+  
+}
+.day-3 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+  
+}
+.day-4 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+  
+}
+.day-5 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+
+  
+}
+.day-6 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+  
+}
+.day-7 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 100px;
+  
+}
+.dates {
+  display: grid;
+  width: 791px;
+  height: 520px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
+  right: 25%;
+}
+.date {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 30px;
+  background-color: #f2f2f2;
+  text-align: center;
+}
+.days-dates-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px;
+}
+.button-1{
+  display: block;
+  background-color: white;
+  position: relative;
+  font-size: 10px;
+  border-radius: 5px;
+  width: 75px;
+  height: 20px;
+  bottom: -10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+button:hover {
+  background-color: white; 
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+  transform: scale(1.1); 
+}
+.letters{
+  color: black;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+}
+.footer {
+  position: absolute;
+  bottom: -1000px;
+  width: 100%;
+  height: 25%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+.contenedor{
+  width: 50%;
+  text-align: justify;
+  position: relative;
+  bottom: -375px;
+  left: 25%;
+}
+.texto-2{
+  width: 50%;
+  text-align: justify;
+
+}
+.texto-1{
+  color: white;
+  font-size: 17px;
+}
+.texto-3{
+  color: white;
+  text-align: center;
+  font-size: 25px;
+}
+@media (max-width: 768px) {
+.Caja::before {
+  width: 100%; 
+  height: 300px; 
+  background-size: cover;
+}
+.Parrafo {
+  font-size: 50px; 
+  top: 30px;
+}
+.Rotador {
+  display: none; 
+}  
+.navbar {
+  text-align: center;
+}
+.navbar-nav {
+  display: flex;
+  flex-direction: row-reverse; 
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.nav-item {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.nav-link {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;    
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.calendar {
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  text-align: center;
+  margin-top: 275px; /* Ajusta el margen superior para bajar el contenido 200 px */
+}
+
+.header {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.days {
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.day-1,
+.day-2,
+.day-3,
+.day-4,
+.day-5,
+.day-6,
+.day-7 {
+  border: 1px solid #ccc;
+  text-align: center;
+  width: calc((100% - 30px) / 7); /* Calcula el ancho para 7 días con espacio entre ellos */
+}
+
+.dates {
+  width: 100%;
+  margin-top: 20px; /* Ajusta el margen superior para bajar el contenido 200 px */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.date {
+  width: calc((100% - 40px) / 7); /* Ajusta el ancho para 7 días con espacio entre ellos */
+  height: 80px; /* Ajusta la altura del cajón */
+  line-height: 80px;
+  background-color: #f2f2f2;
+  text-align: unset;
+  top: -50px; /* Ajusta la posición vertical del cajón para subirlo 50 px */
+  margin-bottom: 10px;
+  border-radius: 10px; /* Esquinas redondeadas para un aspecto más agradable */
+  font-size: 14px; /* Tamaño de fuente para el texto dentro del cajón */
+}
+
+.date-number {
+  position: relative;
+  top: -20px; /* Ajusta la posición vertical del número para estar en la parte superior del cajón */
+  left: 0%; /* Centra el número horizontalmente en el cajón */
+  transform: translateX(-50%);
+}
+
+.button-1 {
+  background-color: white;
+  font-size: 10px; /* Ajusta el tamaño del texto del botón */
+  border-radius: 10px; /* Esquinas redondeadas para el botón */
+  width: 40px; /* Ajusta el ancho del botón */
+  height: 40px; /* Ajusta la altura del botón */
+  margin-bottom: 5px;
+  top: -50px; /* Ajusta la posición vertical del botón para subirlo 50 px */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón sobre el botón */
+  border: 1px solid #ccc; /* Borde para una apariencia más definida */
+  transition: all 0.3s ease; /* Agrega una transición suave al estado en hover */
+}
+
+.button-1:hover {
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transform: scale(1.1);
+}
+
+.letters {
+  color: black;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+}
+.contenedor{
+  width: 100%;
+  text-align: justify;
+  position: relative;
+  bottom: -300px;
+  left: 0%;
+}
+.texto-2{
+  width: 100%;
+  text-align: justify;
+
+}
+.texto-1{
+  color: white;
+  font-size: 15px;
+}
+.texto-3{
+  color: white;
+  text-align: center;
+  font-size: 25px;
+}
+.footer {
+  bottom: -875px;
+  padding-bottom: 14px;
+  }
+}
+

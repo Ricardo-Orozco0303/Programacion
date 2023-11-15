@@ -1,0 +1,72 @@
+body{
+    background-color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+.Text{
+    position: absolute ;
+    text-align:center ;
+    width: 100%;
+    top: 100px;
+    
+}
+.Day{
+    color: white;
+    font-size: 150px;
+}
+body {
+    background: #000;
+    margin: 0;
+    padding: 0;
+  } 
+.arrow-button {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+}
+.arrow {
+    width: 40px;
+    height: 40px;
+    transform: rotate(135deg); /* Ajustado el ángulo para que apunte hacia la izquierda */
+    border-left: none;
+    border-top: none;
+    border-right: 2px #fff solid;
+    border-bottom: 2px #fff solid;
+    position: relative;
+}
+.arrow:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border-left: none;
+    border-top: none;
+    border-right: 1px #fff solid;
+    border-bottom: 1px #fff solid;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-name: arrow;
+    position: absolute;
+}
+@keyframes arrow {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-10px, -10px);
+    }
+  }
+
+@media (max-width: 768px) {
+    .Text{
+        position: absolute ;
+        text-align:center ;
+        width: 100%;
+        top: 250px;
+        
+    }
+    .Day{
+        color: white;
+        font-size: 50px;
+    }
+}
