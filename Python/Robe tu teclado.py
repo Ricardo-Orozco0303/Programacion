@@ -1,7 +1,7 @@
 import tkinter as tk
 
 def robar_teclado():
-    label.config(text="Robe tu teclado")
+    label.config(text="HOLA MUNDO")
 
 window = tk.Tk()
 window.geometry("500x250")
