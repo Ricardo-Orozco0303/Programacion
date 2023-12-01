@@ -1,0 +1,62 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+.header::before{
+    content: "";
+    background-image: url(https://heavy.com/wp-content/uploads/2020/02/gettyimages-1148640972-e1582098438419.jpg?quality=65&strip=all);
+    background-size: cover;
+    top: 5px;
+    width: 1150px;
+    height: 550px;
+    opacity: 0.3;
+    border-radius: 20px;
+    margin: auto;
+    position: absolute;
+}
+.Parrafo {
+    font-size: 100px;
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    color:goldenrod;
+    text-shadow: 100px gray ;
+    top: 90px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+}
+.navbar-nav{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.nav-item{
+    color: goldenrod;
+    float: right;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav-link{
+    font-size: 30PX;
+    font-family: Arial, Helvetica, sans-serif;
+    color: goldenrod;
+    text-decoration: none;
+}
