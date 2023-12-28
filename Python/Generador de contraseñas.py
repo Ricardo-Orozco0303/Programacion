@@ -2,7 +2,7 @@ import random
 import string
 
 def generador(longitud):
-    Caracteres = string.ascii_letters + string.digits + string.punctuation
+    Caracteres = string.ascii_letters + string.digits 
     contraseña = ''.join(random.choice(Caracteres) for _ in range(longitud))
     return contraseña
 if __name__ == "__main__":
