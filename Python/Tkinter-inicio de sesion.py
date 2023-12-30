@@ -28,9 +28,95 @@ def inicio_sesion():
         if resultado:
             messagebox.showinfo("Inicio de Sesión", "Inicio de sesión exitoso")
 
+            def aceptar():
+                    
+                    nombre = entry_nombre.get()
+                    codigo = entry_codigo.get()
+                    valor = entry_valor.get()
+                    unidad = entry_unidad.get()
+
+                    if nombre and codigo and valor and unidad:
+                        try:
+                            
+                            connection = sqlite3.connect("Base_de_prueba.db")
+                            cursor = connection.cursor()
+
+                            cursor.execute('''
+                                CREATE TABLE IF NOT EXISTS reutilizable (
+                                    Nombre TEXT NOT NULL,
+                                    Código TEXT NOT NULL,
+                                    Valor TEXT NOT NULL,
+                                    Unidad TEXT NOT NULL           
+                              ) 
+                          ''')
+                            cursor.execute("INSERT INTO reutilizable (Nombre, Código, Valor, Unidad) VALUES (?, ?, ?, ?)",
+                                           (nombre, codigo, valor, unidad))
+                            connection.commit()
+                            messagebox.showinfo("Ventana de Facturación", "Datos insertados con éxito en la base de datos.")
+
+                        except sqlite3.Error as e:
+                            print("Error de SQLite:", e)
+                            messagebox.showerror("Error de Facturación", "No se pudo insertar los datos en la base de datos.")
+                        finally:
+
+                            connection.close()
+
+                            entry_nombre.delete(0, tk.END)
+                            entry_codigo.delete(0, tk.END)
+                            entry_valor.delete(0, tk.END)
+                            entry_unidad.delete(0, tk.END)
+                    else:
+                        messagebox.showerror("Error de Facturación", "No se pudo insertar los datos en la base de datos.")
+
+            def Imprimir():
+
+                connection = sqlite3.connect("Base_de_prueba.db")
+                cursor = connection.cursor() 
+            
+            def mostrar_factura():
+                try:
+                    connection = sqlite3.connect("Base_de_prueba.db")
+                    cursor = connection.cursor()
+                    cursor.execute('''
+                        CREATE TABLE IF NOT EXISTS reutilizable (
+                            Nombre TEXT NOT NULL,
+                            Código TEXT NOT NULL,
+                            Valor TEXT NOT NULL,
+                            Unidad TEXT NOT NULL           
+                        ) 
+                    ''')
+                    cursor.execute('SELECT * FROM reutilizable')
+                    productos = cursor.fetchall()
+                    if productos:
+                        resultado_text.config(state=tk.NORMAL)
+                        resultado_text.delete(1.0, tk.END)
+                        resultado_text.insert(tk.END, "*******************************************************\n")
+                        resultado_text.insert(tk.END, "********************** Factura ************************\n")
+                        resultado_text.insert(tk.END, "*****************************************************\n\n")
+
+                        for producto in productos:
+                             nombre = producto[0]
+                             codigo = producto[1]
+                             valor = producto[2]
+                             unidad = producto[3]
+                             resultado_text.insert(tk.END, f"{nombre} ({codigo}) - Unidad: {unidad} - Valor: {valor}\n")
+                             resultado_text.insert(tk.END, "\n*******************\n")
+                             total = sum(int(producto[2]) for producto in productos)
+                             resultado_text.insert(tk.END, f"Total: ${total}\n")
+                             resultado_text.insert(tk.END, "*******************\n")
+                             resultado_text.config(state=tk.DISABLED)
+                    else:
+                        messagebox.showinfo("Factura Vacía", "No se han ingresado productos. La factura está vacía.")
+                except sqlite3.Error as e:
+                    print("Error de SQLite:", e)
+                    messagebox.showerror("Error de Facturación", "No se pudo obtener la factura desde la base de datos.")
+                finally:
+                    connection.close()
+
+
             ventana_facturacion = tk.Toplevel(window)
 
-            ventana_facturacion.title("Ventana de facturacion")
+            ventana_facturacion.title("Ventana de facturación")
 
             ancho_ventana_registro = 775
             altura_ventana_registro = 510
@@ -40,15 +126,49 @@ def inicio_sesion():
 
             x = (ancho_pantalla - ancho_ventana_registro) // 2
             y = (altura_pantalla - altura_ventana_registro) // 2
-
+            
             ventana_facturacion.geometry(f"{ancho_ventana_registro}x{altura_ventana_registro}+{x}+{y}")
 
-            label_1 = tk.Label(window, text=" Sistema De Facturacion ", font=("Times New Roman", 25) )
-            label_1.place(x=220 , y=0)
+            label_text_0 = tk.Label(ventana_facturacion, text=" Sistema De Facturación ", font=("Times New Roman", 25))
+            label_text_0.place(x=230, y=0)
 
-            
+            label_text_1 = tk.Label(ventana_facturacion, text=" Ingresa el nombre del Producto: ", font=("Times New Roman", 15))
+            label_text_1.place(x=0, y=50)
 
+            entry_nombre = tk.Entry(ventana_facturacion, width=50)
+            entry_nombre.place(x=270, y=55)
 
+            label_text_2 = tk.Label(ventana_facturacion, text=" Ingrese el código del producto: ", font=("Times New Roman", 15))
+            label_text_2.place(x=0, y=85)
+
+            entry_codigo = tk.Entry(ventana_facturacion, width=50)
+            entry_codigo.place(x=270, y=90)  
+
+            label_text_3 = tk.Label(ventana_facturacion, text=" Ingresa el valor del Producto: ", font=("Times New Roman", 15))
+            label_text_3.place(x=0, y=120)
+
+            entry_valor= tk.Entry(ventana_facturacion, width=50)
+            entry_valor.place(x=270, y=125)  
+
+            label_text_4 = tk.Label(ventana_facturacion, text=" Ingresa la unidad comprada del Producto: ", font=("Times New Roman", 15))
+            label_text_4.place(x=0, y=150)
+
+            entry_unidad = tk.Entry(ventana_facturacion, width=50)
+            entry_unidad.place(x=350, y=155)  
+
+            Button_imprimir = tk.Button(ventana_facturacion, text=("Imprimir"),)
+            Button_imprimir.place(x=700, y=400)
+
+            Button_Aceptar = tk.Button(ventana_facturacion, text=("Aceptar"), command=aceptar)
+            Button_Aceptar.place(x=630, y=400)
+
+            Button_mostrar_factura = tk.Button(ventana_facturacion, text=("mostrar factura"), command=mostrar_factura)
+            Button_mostrar_factura.place(x=510, y=400)
+
+            resultado_text = tk.Text(ventana_facturacion, height=15, width=50, state=tk.DISABLED)
+            resultado_text.place(x=0, y=200)
+
+            ventana_facturacion.mainloop()           
 
         else:
             messagebox.showerror("Inicio de Sesión", "Credenciales incorrectas")
