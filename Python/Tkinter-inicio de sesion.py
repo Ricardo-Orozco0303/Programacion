@@ -90,21 +90,22 @@ def inicio_sesion():
                     if productos:
                         resultado_text.config(state=tk.NORMAL)
                         resultado_text.delete(1.0, tk.END)
-                        resultado_text.insert(tk.END, "*******************************************************\n")
-                        resultado_text.insert(tk.END, "********************** Factura ************************\n")
-                        resultado_text.insert(tk.END, "*****************************************************\n\n")
-
+                        resultado_text.insert(tk.END, "**************************************************\n")
+                        resultado_text.insert(tk.END, "********************** Factura *******************\n")
+                        resultado_text.insert(tk.END, "**************************************************\n\n")
                         for producto in productos:
-                             nombre = producto[0]
-                             codigo = producto[1]
-                             valor = producto[2]
-                             unidad = producto[3]
-                             resultado_text.insert(tk.END, f"{nombre} ({codigo}) - Unidad: {unidad} - Valor: {valor}\n")
-                             resultado_text.insert(tk.END, "\n*******************\n")
-                             total = sum(int(producto[2]) for producto in productos)
-                             resultado_text.insert(tk.END, f"Total: ${total}\n")
-                             resultado_text.insert(tk.END, "*******************\n")
-                             resultado_text.config(state=tk.DISABLED)
+                            nombre = producto[0]
+                            codigo = producto[1]
+                            valor = producto[2]
+                            unidad = producto[3]
+                            resultado_text.insert(tk.END, f"{nombre} ({codigo}) - Unidad: {unidad} - Valor: {valor}\n")
+                            
+                        total = sum(int(producto[2]) for producto in productos)
+                        resultado_text.insert(tk.END, "\n*******************\n")
+                        resultado_text.insert(tk.END, f"Total: ${total}\n")
+                        resultado_text.insert(tk.END, "*******************\n")
+                            
+                        resultado_text.config(state=tk.DISABLED)
                     else:
                         messagebox.showinfo("Factura Vacía", "No se han ingresado productos. La factura está vacía.")
                 except sqlite3.Error as e:
@@ -112,7 +113,22 @@ def inicio_sesion():
                     messagebox.showerror("Error de Facturación", "No se pudo obtener la factura desde la base de datos.")
                 finally:
                     connection.close()
-
+                           
+            def Borrar_factura():
+                try:
+                    conexion = sqlite3.connect("Base_de_prueba.db")
+                    cursor = conexion.cursor()
+                    reutilizable = "reutilizable"
+                    consulta = f"DELETE FROM {reutilizable};"
+                    cursor.execute(consulta)
+                    conexion.commit()
+                    print(f"Contenido de la tabla {reutilizable} borrado exitosamente.")
+                except sqlite3.Error as error:
+                    print("Error al borrar el contenido de la tabla:", error)
+                finally:
+                    if conexion:
+                        conexion.close()
+                
 
             ventana_facturacion = tk.Toplevel(window)
 
@@ -163,7 +179,10 @@ def inicio_sesion():
             Button_Aceptar.place(x=630, y=400)
 
             Button_mostrar_factura = tk.Button(ventana_facturacion, text=("mostrar factura"), command=mostrar_factura)
-            Button_mostrar_factura.place(x=510, y=400)
+            Button_mostrar_factura.place(x=520, y=400)
+            
+            Button_Borrar_factura = tk.Button(ventana_facturacion, text=("Borrar factura "), command=Borrar_factura)
+            Button_Borrar_factura.place(x=420, y=400)
 
             resultado_text = tk.Text(ventana_facturacion, height=15, width=50, state=tk.DISABLED)
             resultado_text.place(x=0, y=200)
