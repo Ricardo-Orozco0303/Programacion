@@ -1,6 +1,7 @@
 import sqlite3
 import tkinter as tk 
 from tkinter import messagebox
+from escpos.printer import Network
 
 connection = sqlite3.connect("Base_de_prueba.db")
 cursor = connection.cursor()
@@ -67,11 +68,15 @@ def inicio_sesion():
                             entry_unidad.delete(0, tk.END)
                     else:
                         messagebox.showerror("Error de Facturación", "No se pudo insertar los datos en la base de datos.")
+            def imprimir():
+                try:
+                    p = Network("192.168.20.52", 9100) 
+                    p.text(resultado_text.get(1.0, tk.END))  
+                    p.cut()
+                except Exception as e:
+                    print(f"Error de Impresión: {str(e)}")
+                    messagebox.showerror("Error de Impresión", f"No se pudo imprimir: {str(e)}")
 
-            def Imprimir():
-
-                connection = sqlite3.connect("Base_de_prueba.db")
-                cursor = connection.cursor() 
             
             def mostrar_factura():
                 try:
@@ -172,7 +177,7 @@ def inicio_sesion():
             entry_unidad = tk.Entry(ventana_facturacion, width=50)
             entry_unidad.place(x=350, y=155)  
 
-            Button_imprimir = tk.Button(ventana_facturacion, text=("Imprimir"),)
+            Button_imprimir = tk.Button(ventana_facturacion, text=("Imprimir"), command=imprimir)
             Button_imprimir.place(x=700, y=400)
 
             Button_Aceptar = tk.Button(ventana_facturacion, text=("Aceptar"), command=aceptar)
